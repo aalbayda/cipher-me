@@ -1,0 +1,38 @@
+@import url('https://fonts.google.com/specimen/Inconsolata?selection.family=Inconsolata');
+
+.app-header {
+    height: 80vh;
+    min-height: 200px;
+    background-image: url('https://images.unsplash.com/photo-1555347873-e5410faa3d10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.card {
+    min-height: 250px;
+    color: #626262;
+    font-family: 'Courier New', Courier, monospace
+}
+
+/* Typewriter effect */
+.navbar-brand {
+    font-family: 'Inconsolata';
+}
+.typewriter {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .05em solid gray; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em; /* Adjust as needed */
+    animation: 
+      typing 1.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 10% }
+  }
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    5% { border-color: gray; }
+  }

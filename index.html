@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <title>Cipher Me</title>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <div class="container">
+          <a class="navbar-brand typewriter">Cipher Me.</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                      <span class="sr-only">(current)</span>
+                    </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav pb-3 pb-lg-0">
+              <li class="nav-item d-none d-lg-inline-block">
+                <a class="nav-link text-bootstrap" href=""><i class="fa fa-github" aria-hidden="true"></i></a>
+              </li>
+              <li class="nav-item d-none d-lg-inline-block">
+                    <a class="nav-link text-facebook" href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Cipher -->
+      <header class="app-header">
+        <div class="container h-100">
+          <div class="row h-100 align-items-center">
+            <div class="container">
+              <div class="row">
+                  <div class="col">
+                        <div class="card" id="card-1">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="type-1">Enter plaintext here</h5>
+                                  <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="textarea-1" rows="3" oninput="handleROT13()"></textarea>
+                                        </div>
+                                        <div class="form-row" id ="form-row-1">
+                                            <div class="col-auto form-group">
+                                                <select class="custom-select" id="select-1" onchange="handleChange()">
+                                                    <option value="rot13">ROT13</option>
+                                                    <option value="caesar">Caesar</option>
+                                                    <option value="vigenere">Vigenere</option>
+                                                    <option value="null">Null</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                  </form>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="col" id="card-2">
+                        <div class="card" id="card-2">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="type-2">ROT13 Cipher</h5>
+                                  <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="textarea-2" rows="3" onchange=""></textarea>
+                                        </div>
+                                        <div class="form-row float-right" id="form-row-2">
+                                            <button type="button" class="btn" onclick="handleCopy()"><i class="fa fa-clipboard"></i></span></button>
+                                            <button type="button" class="btn" onclick="handleClear()"><i class="fa fa-repeat"></i></button>
+                                        </div>
+                                  </form>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+              <div class="row"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Info -->
+      <section class="py-5">
+        <div class="container">
+          <h2 class="font-weight-light">Create secret code words and pretend you're a spy! (Or a weirdo.)</h2>
+          <p class="font-weight-light">Hide plain messages with this crappy web encryptor.</p>
+          <p class="font-weight-light small"><b>Image credits:</b> James Pond with <a href="https://unsplash.com/photos/Z0uzZSM5i4M" style="color:gray">Unsplash</a></p>
+        </div>
+      </section>
+    </body>
+    <script type="text/javascript" src="script.js"></script>
+</html>
+
