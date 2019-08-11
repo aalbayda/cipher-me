@@ -24,7 +24,6 @@ const handleChange = () => {
             inputKey.setAttribute("onchange", "handleCaesar()");
             divFormGroup.appendChild(inputKey);
             form.appendChild(divFormGroup);
-            hasSwitched = true;
             break;
         case "Vigenere":
             divFormGroup = document.createElement("div");
@@ -38,7 +37,19 @@ const handleChange = () => {
             inputKey.setAttribute("onchange", "handleVigenere()");
             divFormGroup.appendChild(inputKey);
             form.appendChild(divFormGroup);
-            hasSwitched = true;
+            break;
+        case "Hill":
+            divFormGroup = document.createElement("div");
+            divFormGroup.setAttribute("id", "new-form");
+            divFormGroup.setAttribute("class", "col-auto form-group");
+            inputKey = document.createElement("input");
+            inputKey.setAttribute("class", "form-control");
+            inputKey.setAttribute("type", "text");
+            inputKey.setAttribute("id", "key-1");
+            inputKey.setAttribute("placeholder", "Keyword");
+            inputKey.setAttribute("onchange", "handleHill()");
+            divFormGroup.appendChild(inputKey);
+            form.appendChild(divFormGroup);
             break;
     }
 }
@@ -114,6 +125,36 @@ const handleNull = () => {
         if (words[i].length > 0) 
             ciphertext += words[i][0];
     document.getElementById('textarea-2').value = ciphertext;
+}
+// TO DO: mod 26 resulting matrix
+const handleHill = () => {
+    if (!document.getElementById('key-1').value) {
+        document.getElementById('textarea-2').value = "Enter a keyword first!";
+    }
+    let keyword = document.getElementById('key-1').value;
+    let plaintext = document.getElementById('textarea-1').value;
+    let keyMatrix = [];
+    for (let i = 0; i < plaintext.length; i++)
+        keyMatrix.push([0,0,0]);
+    let plainMatrix = [];
+
+    // Convert keyword to matrix
+    let keyIndex = 0;
+    for (let i = 0; i < keyMatrix.length; i++) {
+        for (let j = 0; j < keyMatrix.length; j++) {
+            keyIndex[i][j] = keyword[keyIndex++].charCodeAt()-97;
+        }
+    }
+
+    // Convert plaintext to matrix
+    let plainMatrix = [];
+    for (let i = 0; i < plaintext.length; i++) {
+        let e = [];
+        e.push(plaintext[i].charCodeAt()-97);
+        plainMatrix.push(e);
+    }
+
+    const newMatrix = math.multiply(keyMatrix, plainMatrix);
 }
 
 const handleCopy = () => {
