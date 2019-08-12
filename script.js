@@ -20,11 +20,12 @@ const handleChange = () => {
             document.querySelector('option[value="caesar"]').setAttribute("selected", "");
             break;
         case "Vigenere":
-            form.innerHTML += createFormGroup("keyword", "Keyword", cipherType);
+            form.innerHTML += createFormGroup("text", "Keyword", cipherType);
             document.querySelector('option[value="vigenere"]').setAttribute("selected", "");
             break;
         case "Hill":
-            form.innerHTML += createFormGroup("keyword", "Keyword", cipherType);
+            form.innerHTML += createFormGroup("text", "Keyword", cipherType);
+            form.innerHTML += createFormGroup("number", "n (for nxn matrix)", cipherType);
             document.querySelector('option[value="hill"]').setAttribute("selected", "");
             break;
         default:
@@ -32,28 +33,65 @@ const handleChange = () => {
     }
 }
 
+const isLetter = (e) => {
+    if (e.toUpperCase() == e.toLowerCase())
+        return false;
+    return true;
+}
+
+const isUpper = (e) => {
+    if (e == e.toUpperCase())
+        return true;
+    return false;
+}
+
+const isLower = (e) => {
+    if (e == e.toLowerCase())
+        return true;
+    return false;
+}
+
 const handleShift = (key) => {
     let plaintext = document.getElementById('textarea-1').value;
     let result = '';
     let charcode = 0;
     for (let i = 0; i < plaintext.length; i++) {
-        if (plaintext[i].toLowerCase() == plaintext[i].toUpperCase())
+        if (!isLetter(plaintext[i]))
             result += plaintext[i];
-        else if (plaintext[i] == plaintext[i].toLowerCase())
+        else if (isLower(plaintext[i]))
             charcode = 97+(plaintext[i].charCodeAt()-97 + key)%26;
         else
             charcode = 65+(plaintext[i].charCodeAt()-65 + key)%26;
         result += String.fromCharCode(charcode);
     }
-    document.getElementById('textarea-2').value = result;
+    return result;
 }
 
 const handleROT13 = () => { 
-    handleShift(13);
+    document.getElementById('textarea-2').value = handleShift(13);
 }
 
 const handleCaesar = () => {
-    handleShift(document.getElementById('key-1').value);
+    document.getElementById('textarea-2').value = handleShift(document.getElementById('key-1').value);
+}
+
+const handleAtbash = () => {
+    let plaintext = document.getElementById('textarea-1').value;
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let newAlphabet = alphabet.split("").reverse().join().replace(/,/g, "");
+    let cipher = "";
+    for (let i = 0; i < plaintext.length; i++) {
+        if (isLetter(plaintext[i])) {
+            if (isUpper(plaintext[i])) {
+                let e = newAlphabet[alphabet.indexOf(plaintext[i].toLowerCase())];
+                cipher += e.toUpperCase();
+            }
+            else
+                cipher += newAlphabet[alphabet.indexOf(plaintext[i])];
+        }
+        else cipher += plaintext[i];
+    }
+    document.getElementById('textarea-2').value = cipher;
 }
 
 const handleVigenere = () => {
@@ -104,36 +142,16 @@ const handleNull = () => {
             ciphertext += words[i][0];
     document.getElementById('textarea-2').value = ciphertext;
 }
-/* TO DO: mod 26 resulting matrix
+
+const handleAffine = () => {
+
+}
+
 const handleHill = () => {
     if (!document.getElementById('key-1').value) {
         document.getElementById('textarea-2').value = "Enter a keyword first!";
     }
-    let keyword = document.getElementById('key-1').value;
-    let plaintext = document.getElementById('textarea-1').value;
-    let keyMatrix = [];
-    for (let i = 0; i < plaintext.length; i++)
-        keyMatrix.push([0,0,0]);
-    let plainMatrix = [];
-
-    // Convert keyword to matrix
-    let keyIndex = 0;
-    for (let i = 0; i < keyMatrix.length; i++) {
-        for (let j = 0; j < keyMatrix.length; j++) {
-            keyIndex[i][j] = keyword[keyIndex++].charCodeAt()-97;
-        }
-    }
-
-    // Convert plaintext to matrix
-    let plainMatrix = [];
-    for (let i = 0; i < plaintext.length; i++) {
-        let e = [];
-        e.push(plaintext[i].charCodeAt()-97);
-        plainMatrix.push(e);
-    }
-
-    const newMatrix = math.multiply(keyMatrix, plainMatrix);
-}*/
+}
 
 const handleCopy = () => {
     let copyText = document.getElementById("textarea-2");

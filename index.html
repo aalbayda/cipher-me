@@ -22,7 +22,13 @@
                     </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#">Cryptography</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Learn about ciphers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About me</a>
               </li>
             </ul>
             <ul class="navbar-nav pb-3 pb-lg-0">
@@ -56,9 +62,16 @@
                                                 <select class="custom-select" id="select-1" oninput="handleChange()">
                                                     <option value="rot13">ROT13</option>
                                                     <option value="caesar">Caesar</option>
+                                                    <option value="atbash">Atbash</option>
                                                     <option value="vigenere">Vigenere</option>
                                                     <option value="null">Null</option>
                                                     <option value="hill">Hill</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-auto form-group">
+                                                <select class="custom-select" id="select-2" oninput="handleChange()">
+                                                  <option value="encrypt">Encrypt</option>
+                                                  <option value="decrypt">Decrypt</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -100,5 +113,6 @@
       </section>
     </body>
     <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.0.4/math.js"></script>
 </html>
 
