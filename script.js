@@ -1,4 +1,9 @@
-// If user types in box 1
+const createFormGroup = (keyType, placeholder, cipherType) => {
+   return `
+    <div class="col-auto form-group" id="new-form">
+        <input type="${keyType}" id="key-1" placeholder="${placeholder}" onchange="handle${cipherType}"></input> 
+    </div>`;
+}
 
 const handleChange = () => {
     let e = document.getElementById('select-1');
@@ -13,45 +18,16 @@ const handleChange = () => {
     }
     switch (cipherType) {
         case "Caesar":
-            divFormGroup = document.createElement("div");
-            divFormGroup.setAttribute("id", "new-form");
-            divFormGroup.setAttribute("class", "col-auto form-group");
-            inputKey = document.createElement("input");
-            inputKey.setAttribute("class", "form-control");
-            inputKey.setAttribute("type", "number");
-            inputKey.setAttribute("id", "key-1");
-            inputKey.setAttribute("placeholder", "Key (a->z)");
-            inputKey.setAttribute("onchange", "handleCaesar()");
-            divFormGroup.appendChild(inputKey);
-            form.appendChild(divFormGroup);
+            createFormGroup("number", "Key (a->z)", cipherType);
             break;
         case "Vigenere":
-            divFormGroup = document.createElement("div");
-            divFormGroup.setAttribute("id", "new-form");
-            divFormGroup.setAttribute("class", "col-auto form-group");
-            inputKey = document.createElement("input");
-            inputKey.setAttribute("class", "form-control");
-            inputKey.setAttribute("type", "text");
-            inputKey.setAttribute("id", "key-1");
-            inputKey.setAttribute("placeholder", "Keyword");
-            inputKey.setAttribute("onchange", "handleVigenere()");
-            divFormGroup.appendChild(inputKey);
-            form.appendChild(divFormGroup);
+            createFormGroup("keyword", "Keyword", cipherType);
             break;
         case "Hill":
-            divFormGroup = document.createElement("div");
-            divFormGroup.setAttribute("id", "new-form");
-            divFormGroup.setAttribute("class", "col-auto form-group");
-            inputKey = document.createElement("input");
-            inputKey.setAttribute("class", "form-control");
-            inputKey.setAttribute("type", "text");
-            inputKey.setAttribute("id", "key-1");
-            inputKey.setAttribute("placeholder", "Keyword");
-            inputKey.setAttribute("onchange", "handleHill()");
-            divFormGroup.appendChild(inputKey);
-            form.appendChild(divFormGroup);
+                createFormGroup("keyword", "Keyword", cipherType);
             break;
     }
+    
 }
 
 const handleShift = (key) => {
