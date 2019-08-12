@@ -53,7 +53,7 @@
                                         </div>
                                         <div class="form-row" id ="form-row-1">
                                             <div class="col-auto form-group">
-                                                <select class="custom-select" id="select-1" onchange="handleChange()">
+                                                <select class="custom-select" id="select-1" oninput="handleChange()">
                                                     <option value="rot13">ROT13</option>
                                                     <option value="caesar">Caesar</option>
                                                     <option value="vigenere">Vigenere</option>
@@ -72,10 +72,11 @@
                                   <h5 class="card-title" id="type-2">ROT13 Cipher</h5>
                                   <form>
                                         <div class="form-group">
-                                            <textarea class="form-control" id="textarea-2" rows="3" onchange=""></textarea>
+                                            <textarea class="form-control" id="textarea-2" rows="3"></textarea>
                                         </div>
                                         <div class="form-row float-right" id="form-row-2">
                                             <button type="button" class="btn" onclick="handleCopy()"><i class="fa fa-clipboard"></i></span></button>
+                                            <button type="button" class="btn" onclick="handleTransferLeft()"><i class="fa fa-arrow-left"></i></span></button>
                                             <button type="button" class="btn" onclick="handleClear()"><i class="fa fa-repeat"></i></button>
                                         </div>
                                   </form>

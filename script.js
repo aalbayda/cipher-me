@@ -1,33 +1,35 @@
 const createFormGroup = (keyType, placeholder, cipherType) => {
    return `
     <div class="col-auto form-group" id="new-form">
-        <input type="${keyType}" id="key-1" placeholder="${placeholder}" onchange="handle${cipherType}"></input> 
+        <input class="form-control" type="${keyType}" id="key-1" placeholder="${placeholder}" oninput="handle${cipherType}"></input> 
     </div>`;
 }
-
 const handleChange = () => {
     let e = document.getElementById('select-1');
     let cipherType = e.options[e.selectedIndex].text;
     //Update card text
     document.getElementById('type-2').innerHTML = cipherType + " Cipher";
     document.getElementById('textarea-1').setAttribute('oninput', `handle${cipherType}()`);
-    let divFormGroup, inputKey;
     let form = document.getElementById('form-row-1');
     if (form.childElementCount == 2) {
         form.removeChild(form.children[1]);
     }
     switch (cipherType) {
         case "Caesar":
-            createFormGroup("number", "Key (a->z)", cipherType);
+            form.innerHTML += createFormGroup("number", "Key (a->z)", cipherType);
+            document.querySelector('option[value="caesar"]').setAttribute("selected", "");
             break;
         case "Vigenere":
-            createFormGroup("keyword", "Keyword", cipherType);
+            form.innerHTML += createFormGroup("keyword", "Keyword", cipherType);
+            document.querySelector('option[value="vigenere"]').setAttribute("selected", "");
             break;
         case "Hill":
-                createFormGroup("keyword", "Keyword", cipherType);
+            form.innerHTML += createFormGroup("keyword", "Keyword", cipherType);
+            document.querySelector('option[value="hill"]').setAttribute("selected", "");
+            break;
+        default:
             break;
     }
-    
 }
 
 const handleShift = (key) => {
@@ -102,7 +104,7 @@ const handleNull = () => {
             ciphertext += words[i][0];
     document.getElementById('textarea-2').value = ciphertext;
 }
-// TO DO: mod 26 resulting matrix
+/* TO DO: mod 26 resulting matrix
 const handleHill = () => {
     if (!document.getElementById('key-1').value) {
         document.getElementById('textarea-2').value = "Enter a keyword first!";
@@ -131,12 +133,17 @@ const handleHill = () => {
     }
 
     const newMatrix = math.multiply(keyMatrix, plainMatrix);
-}
+}*/
 
 const handleCopy = () => {
     let copyText = document.getElementById("textarea-2");
     copyText.select();
     document.execCommand("copy");
+}
+
+const handleTransferLeft = () => {
+    document.getElementById('textarea-1').value = document.getElementById('textarea-2').value;
+    document.getElementById('textarea-2').value = "";
 }
 
 const handleClear = () => {
